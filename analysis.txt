@@ -15,3 +15,9 @@ Plan
 * NewsItem ViewHolder
 * Adapter (ViewModel Collection) der RecyclerView
 => Screen 1 News Übersicht
+
+Next time
+=========
+
+* Add Picasso
+* Image setzen
