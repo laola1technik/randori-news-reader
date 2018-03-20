@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import at.laola1.newsreader.R;
+import at.laola1.newsreader.viewmodel.NewsItemViewModel;
 
 public class NewsItemViewHolder extends RecyclerView.ViewHolder {
 
@@ -18,4 +19,10 @@ public class NewsItemViewHolder extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.newsImage);
         textView = itemView.findViewById(R.id.newsTitle);
     }
+
+    public void bind(NewsItemViewModel newsItemViewModel) {
+        textView.setText(newsItemViewModel.getTitle());
+        // Todo: Set Image.
+    }
+
 }
