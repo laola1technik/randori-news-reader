@@ -1,0 +1,19 @@
+Screen 1 News Übersicht
+=======================
+RecyclerView
+ConstraintLayout oder LinearLayout
+
+
+Screen 2 News Details
+=====================
+ScrollView
+ConstraintLayout oder LinearLayout
+
+Plan
+====
+
+* Layout einer News der Übersicht
+* NewsItem ViewModel
+* NewsItem ViewHolder
+* Adapter (ViewModel Collection) der RecyclerView
+=> Screen 1 News Übersicht
