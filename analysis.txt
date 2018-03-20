@@ -12,7 +12,6 @@ ConstraintLayout oder LinearLayout
 Plan
 ====
 
-* NewsItem ViewModel
 * NewsItem ViewHolder
 * Adapter (ViewModel Collection) der RecyclerView
 => Screen 1 News Übersicht
