@@ -22,7 +22,7 @@ public class NewsOverviewAdapter extends RecyclerView.Adapter<NewsItemViewHolder
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
         NewsItemViewModel itemModel = new NewsItemViewModel();
         itemModel.setTitle("title");
-        // Todo: Set ImageUrl
+        itemModel.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
         holder.bind(itemModel);
     }
 

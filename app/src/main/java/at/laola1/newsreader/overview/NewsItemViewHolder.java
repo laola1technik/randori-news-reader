@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import at.laola1.newsreader.R;
 
 public class NewsItemViewHolder extends RecyclerView.ViewHolder {
@@ -21,7 +23,9 @@ public class NewsItemViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(NewsItemViewModel newsItemViewModel) {
         textView.setText(newsItemViewModel.getTitle());
-        // Todo: Set Image.
+        Picasso.with(itemView.getContext())
+                .load(newsItemViewModel.getImageUrl())
+                .into(imageView);
     }
 
 }
