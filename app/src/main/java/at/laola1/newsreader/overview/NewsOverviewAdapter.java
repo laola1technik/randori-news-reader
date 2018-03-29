@@ -6,10 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import at.laola1.newsreader.R;
 
 public class NewsOverviewAdapter extends RecyclerView.Adapter<NewsItemViewHolder>
 {
+    private List<NewsItemViewModel> newsItems = Collections.emptyList();
+
     @Override
     public NewsItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -20,14 +26,16 @@ public class NewsOverviewAdapter extends RecyclerView.Adapter<NewsItemViewHolder
 
     @Override
     public void onBindViewHolder(NewsItemViewHolder holder, int position) {
-        NewsItemViewModel itemModel = new NewsItemViewModel();
-        itemModel.setTitle("title");
-        itemModel.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
-        holder.bind(itemModel);
+        holder.bind(this.newsItems.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return this.newsItems.size();
+    }
+
+    public void setNewsItems(List<NewsItemViewModel> newsItems) {
+        this.newsItems = newsItems;
+        notifyDataSetChanged();
     }
 }

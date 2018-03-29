@@ -15,3 +15,10 @@ Plan
 
 Next time
 =========
+
+Things to keep in mind
+======================
+
+* Loading Indicator
+* No Data found when downloaded list empty
+* Error Messages from Server
