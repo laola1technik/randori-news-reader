@@ -7,6 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import at.laola1.newsreader.overview.NewsOverviewActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -20,8 +22,8 @@ public class MainActivityEspressoTest {
 
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule =
-            new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<NewsOverviewActivity> mActivityRule =
+            new ActivityTestRule<>(NewsOverviewActivity.class);
 
     @Test
     public void ensureTextChangesWork() {

@@ -1,4 +1,4 @@
-package at.laola1.newsreader.viewholder;
+package at.laola1.newsreader.overview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import at.laola1.newsreader.R;
-import at.laola1.newsreader.viewmodel.NewsItemViewModel;
 
 public class NewsItemViewHolder extends RecyclerView.ViewHolder {
 

@@ -10,7 +10,7 @@
         android:layout_weight="2"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/icehockeyItem" />
+        android:src="@drawable/icehockey_placeholder_large" />
 
     <TextView
         android:id="@+id/newsTitle"

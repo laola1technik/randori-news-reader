@@ -1,4 +1,4 @@
-package at.laola1.newsreader.viewmodel;
+package at.laola1.newsreader.overview;
 
 public class NewsItemViewModel {
 
