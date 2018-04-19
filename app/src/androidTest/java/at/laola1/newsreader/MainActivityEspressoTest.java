@@ -1,5 +1,6 @@
 package at.laola1.newsreader;
 
+import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -31,44 +32,44 @@ public class MainActivityEspressoTest {
 
     @Test
     public void shouldSetNewsItemTitle() throws Throwable {
-        mActivityRule.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                List<NewsItemViewModel> newsItems = new ArrayList<>();
-                NewsItemViewModel itemModel = new NewsItemViewModel();
-                itemModel.setTitle("title1");
-                itemModel.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
-                newsItems.add(itemModel);
-
-                mActivityRule.getActivity().setNewsItems(newsItems);
-            }
-        });
+        setNewsItems(generateNewsItemList("title1"));
 
         onView(withId(R.id.recyclerView)).check(matches(hasDescendant(withText("title1"))));
     }
 
-    @Test
-    public void shouldSetMultipleNewsItemTitles() throws Throwable {
+    private void setNewsItems(final List<NewsItemViewModel> newsItems) throws Throwable {
         mActivityRule.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                List<NewsItemViewModel> newsItems = new ArrayList<>();
-                NewsItemViewModel itemModel = new NewsItemViewModel();
-                itemModel.setTitle("title1");
-                itemModel.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
-                newsItems.add(itemModel);
-                NewsItemViewModel itemModel2 = new NewsItemViewModel();
-                itemModel2.setTitle("title2");
-                itemModel2.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
-                newsItems.add(itemModel2);
-
                 mActivityRule.getActivity().setNewsItems(newsItems);
             }
         });
+    }
+
+    @Test
+    public void shouldSetMultipleNewsItemTitles() throws Throwable {
+        setNewsItems(generateNewsItemList("title1", "title2"));
 
         onView(withId(R.id.recyclerView)).check(matches(Matchers.allOf(
                 hasDescendant(withText("title1")),
                 hasDescendant(withText("title2"))
         )));
+    }
+
+    @NonNull
+    private List<NewsItemViewModel> generateNewsItemList(String ... titles) {
+        List<NewsItemViewModel> newsItems = new ArrayList<>();
+        for (String title : titles) {
+            NewsItemViewModel itemModel = generateNewsItem(title);
+            newsItems.add(itemModel);
+        }
+        return newsItems;
+    }
+
+    @NonNull
+    private NewsItemViewModel generateNewsItem(String title) {
+        NewsItemViewModel model = new NewsItemViewModel();
+        model.setTitle(title);
+        return model;
     }
 }
