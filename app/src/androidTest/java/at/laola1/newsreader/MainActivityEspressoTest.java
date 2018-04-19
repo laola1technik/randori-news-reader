@@ -3,6 +3,7 @@ package at.laola1.newsreader;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,14 @@ public class MainActivityEspressoTest {
 
     @Test
     public void shouldSetNewsItemTitle() {
-        onView(withId(R.id.recyclerView)).check(matches(hasDescendant(withText("title"))));
+        onView(withId(R.id.recyclerView)).check(matches(hasDescendant(withText("title1"))));
+    }
+
+    @Test
+    public void shouldSetMultipleNewsItemTitles() {
+        onView(withId(R.id.recyclerView)).check(matches(Matchers.allOf(
+                hasDescendant(withText("title1")),
+                hasDescendant(withText("title2"))
+        )));
     }
 }

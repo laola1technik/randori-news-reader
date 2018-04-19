@@ -40,9 +40,13 @@ public class NewsOverviewActivity extends AppCompatActivity {
     private List<NewsItemViewModel> getNewsItems() {
         List<NewsItemViewModel> newsItems = new ArrayList<>();
         NewsItemViewModel itemModel = new NewsItemViewModel();
-        itemModel.setTitle("title");
+        itemModel.setTitle("title1");
         itemModel.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
         newsItems.add(itemModel);
+        NewsItemViewModel itemModel2 = new NewsItemViewModel();
+        itemModel2.setTitle("title2");
+        itemModel2.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
+        newsItems.add(itemModel2);
         return newsItems;
     }
 }
