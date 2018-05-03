@@ -1,6 +1,5 @@
 package at.laola1.newsreader.feed;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,48 +11,25 @@ import java.net.URL;
 public class Downloader {
     private URL url;
 
-    public Downloader(String url) {
-        try {
-            this.url = new URL(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    public Downloader(String url) throws MalformedURLException {
+        this.url = new URL(url);
     }
 
-    public String getContent() {
-        HttpURLConnection urlConnection = null;
-        try {
-            urlConnection = (HttpURLConnection) this.url.openConnection();
-            return readStream(urlConnection.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null)
-                urlConnection.disconnect();
-        }
-        return "";
+    public String getContent() throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) this.url.openConnection();
+        String response = readStream(urlConnection.getInputStream());
+        urlConnection.disconnect();
+        return response;
     }
 
-    private String readStream(InputStream in) {
-        BufferedReader reader = null;
+    private String readStream(InputStream in) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         StringBuilder response = new StringBuilder();
-        try {
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        String line;
+        while ((line = reader.readLine()) != null) {
+            response.append(line);
         }
+        reader.close();
         return response.toString();
     }
 
