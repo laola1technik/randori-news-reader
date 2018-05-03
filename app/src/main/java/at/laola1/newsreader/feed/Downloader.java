@@ -1,5 +1,7 @@
 package at.laola1.newsreader.feed;
 
+import android.os.AsyncTask;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,22 +17,50 @@ public class Downloader {
         this.url = new URL(url);
     }
 
-    public String getContent() throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection) this.url.openConnection();
-        String response = readStream(urlConnection.getInputStream());
-        urlConnection.disconnect();
-        return response;
+    public void getContent(FinishedDownloadCallback callback) throws IOException {
+        new DownloadTask(callback).execute(this.url);
     }
 
-    private String readStream(InputStream in) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        StringBuilder response = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            response.append(line);
+
+    private static class DownloadTask extends AsyncTask<URL, Void, String> {
+
+        private FinishedDownloadCallback callback;
+
+        public DownloadTask(FinishedDownloadCallback callback) {
+            this.callback = callback;
         }
-        reader.close();
-        return response.toString();
-    }
 
+        @Override
+        protected String doInBackground(URL... urls) {
+
+            HttpURLConnection urlConnection = null;
+            try {
+                urlConnection = (HttpURLConnection) urls[0].openConnection();
+                return readStream(urlConnection.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            callback.onDownloadFinish(response);
+        }
+
+        private String readStream(InputStream in) throws IOException {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+            return response.toString();
+        }
+    }
 }

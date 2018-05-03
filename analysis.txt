@@ -16,7 +16,7 @@ Plan
 Next time
 =========
 * Loading feed with Unit Test
-* Parsing feed and model with Unit Test
+* Parsing feed and model with Unit Test + data provider
 * Add to main activity
 
 Things to keep in mind
