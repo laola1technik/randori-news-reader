@@ -21,10 +21,9 @@ public class DownloaderUnitTest {
     public void shouldDownloadEmptyFile() throws IOException {
         startServer();
         try {
-            Downloader downloader = new Downloader();
-            downloader.setUrl("http://127.0.0.1:8801/test");
-            byte[] content = downloader.getContent();
-            assertEquals(0, content.length);
+            Downloader downloader = new Downloader("http://127.0.0.1:8801/test");
+            String content = downloader.getContent();
+            assertEquals(0, content.length());
         } finally {
             stopServer();
         }
