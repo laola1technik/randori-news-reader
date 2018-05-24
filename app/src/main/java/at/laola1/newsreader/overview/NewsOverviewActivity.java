@@ -7,10 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import at.laola1.newsreader.R;
+import at.laola1.newsreader.feed.DownloaderAsyncTask;
 import at.laola1.newsreader.feed.FinishedDownloadCallback;
 import at.laola1.newsreader.feed.Downloader;
 
@@ -51,14 +53,12 @@ public class NewsOverviewActivity extends AppCompatActivity {
     private List<NewsItemViewModel> getNewsItems() {
         String content = "";
         try {
-            Downloader downloader = new Downloader("http://appsdata.laola1.at/data/probetag/news.json");
-           downloader.getContent(new FinishedDownloadCallback() {
+            new DownloaderAsyncTask(new FinishedDownloadCallback() {
                 @Override
                 public void onDownloadFinish(String response) {
                 }
 
-            });
-
+            }).execute(new URL("http://appsdata.laola1.at/data/probetag/news.json"));
         } catch (IOException e) {
             e.printStackTrace(); // TODO PK nono
         }

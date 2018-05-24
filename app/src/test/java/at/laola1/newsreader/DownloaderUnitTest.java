@@ -9,8 +9,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URL;
 
-import at.laola1.newsreader.feed.FinishedDownloadCallback;
 import at.laola1.newsreader.feed.Downloader;
 
 import static org.junit.Assert.assertEquals;
@@ -21,30 +21,23 @@ public class DownloaderUnitTest {
     @Test
     public void shouldDownloadEmptyFile() throws IOException {
         startServer(); // TODO PK start and stop in @Before and @After
-        Downloader downloader = new Downloader("http://127.0.0.1:8801/emptyFile");
-        downloader.getContent(new FinishedDownloadCallback() {
-            @Override
-            public void onDownloadFinish(String response) {
-                // TODO PK this does not work if download is slow, need to wait outside for completion, e.g. CountDownLatch or awaitility
-                assertEquals(0, response.length());
-                stopServer();
-            }
-
-        });
+        URL url = new URL("http://127.0.0.1:8801/emptyFile");
+        Downloader downloader = new Downloader(url);
+        String response = downloader.getContent();
+        assertEquals(0, response.length());
+        stopServer();
     }
 
     @Test
     public void shouldDownloadFileWithText() throws IOException {
         startServer();
-        Downloader downloader = new Downloader("http://127.0.0.1:8801/fileWithText");
-        downloader.getContent(new FinishedDownloadCallback() {
-            @Override
-            public void onDownloadFinish(String response) {
-                assertEquals("text", response);
-                stopServer();
-            }
-            // TODO PK format
-        });
+
+        URL url = new URL("http://127.0.0.1:8801/fileWithText");
+        Downloader downloader = new Downloader(url);
+        String response = downloader.getContent();
+        assertEquals("text", response);
+        stopServer();
+        // TODO PK format
     }
 
     private void stopServer() { // TODO PK sort below start
