@@ -22,13 +22,13 @@ Plan
 Next time
 ---------
 
-* Loading feed with Unit Test - WIP
-* Parsing feed and model with Unit Test + data provider
+* Parsing feed and fill model with Unit Test + data provider
 * Add to main activity
 
 Things to keep in mind
 ----------------------
 
+* Loading feed error handling
 * Loading Indicator
 * No Data found when downloaded list empty
 * Error Messages from Server
