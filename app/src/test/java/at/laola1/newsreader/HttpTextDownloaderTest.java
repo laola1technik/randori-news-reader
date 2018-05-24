@@ -4,6 +4,8 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -16,46 +18,46 @@ import at.laola1.newsreader.feed.HttpTextDownloader;
 import static org.junit.Assert.assertEquals;
 
 public class HttpTextDownloaderTest {
-    private HttpServer server;
+
+    private HttpServer fakeServer;
+
+    @Before
+    public void startServer() throws IOException {
+        fakeServer = HttpServer.create(new InetSocketAddress(8801), 0);
+        fakeServer.createContext("/emptyFile", new ServeTextResponse(""));
+        fakeServer.createContext("/fileWithText", new ServeTextResponse("text"));
+        fakeServer.start();
+    }
+
+    @After
+    public void stopServer() {
+        fakeServer.stop(0);
+    }
 
     @Test
     public void shouldDownloadEmptyFile() throws IOException {
-        startServer(); // TODO PK start and stop in @Before and @After
         URL url = new URL("http://127.0.0.1:8801/emptyFile");
         HttpTextDownloader httpTextDownloader = new HttpTextDownloader(url);
+
         String response = httpTextDownloader.getContent();
+
         assertEquals(0, response.length());
-        stopServer();
     }
 
     @Test
     public void shouldDownloadFileWithText() throws IOException {
-        startServer();
-
         URL url = new URL("http://127.0.0.1:8801/fileWithText");
         HttpTextDownloader httpTextDownloader = new HttpTextDownloader(url);
+
         String response = httpTextDownloader.getContent();
+
         assertEquals("text", response);
-        stopServer();
-        // TODO PK format
     }
 
-    private void stopServer() { // TODO PK sort below start
-        server.stop(0);
-    }
+    static class ServeTextResponse implements HttpHandler {
+        private final String response;
 
-    private void startServer() throws IOException {
-        server = HttpServer.create(new InetSocketAddress(8801), 0);
-        server.createContext("/emptyFile", new FileHandler(""));
-        server.createContext("/fileWithText", new FileHandler("text"));
-        server.setExecutor(null); // creates a default executor
-        server.start();
-    }
-
-    static class FileHandler implements HttpHandler {
-        private String response;
-
-        private FileHandler(String response) {
+        private ServeTextResponse(String response) {
             this.response = response;
         }
 
@@ -67,5 +69,4 @@ public class HttpTextDownloaderTest {
             os.close();
         }
     }
-    // Todo: Method execute in android.os.AsyncTask not mocked.
 }

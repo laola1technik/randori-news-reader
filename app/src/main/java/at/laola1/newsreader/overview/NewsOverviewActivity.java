@@ -1,8 +1,8 @@
 package at.laola1.newsreader.overview;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -17,9 +17,7 @@ import at.laola1.newsreader.feed.FinishedDownloadCallback;
 
 public class NewsOverviewActivity extends AppCompatActivity {
 
-    // TODO PK format
-
-    private NewsOverviewAdapter adapter; // TODO PK rename
+    private NewsOverviewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +29,16 @@ public class NewsOverviewActivity extends AppCompatActivity {
     private void initializeView() {
         setContentView(R.layout.activity_news_overview);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView); // TODO PK rename recyclerView
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         adapter = new NewsOverviewAdapter();
         recyclerView.setAdapter(adapter);
     }
 
     private void loadContent() {
-        List<NewsItemViewModel> newsItems = getNewsItems();
-        setNewsItems(newsItems);
+        setNewsItems(getNewsItems());
     }
-
-    // TODO public for test, document
-    public void setNewsItems(List<NewsItemViewModel> newsItems) {
-        adapter.setNewsItems(newsItems);
-    }
-
 
     @NonNull
     private List<NewsItemViewModel> getNewsItems() {
@@ -59,7 +51,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
 
             }).execute(new URL("http://appsdata.laola1.at/data/probetag/news.json"));
         } catch (IOException e) {
-            e.printStackTrace(); // TODO PK nono
+            e.printStackTrace(); // TODO PK Error Handling
         }
         List<NewsItemViewModel> newsItems = new ArrayList<>();
         NewsItemViewModel itemModel = new NewsItemViewModel();
@@ -72,10 +64,9 @@ public class NewsOverviewActivity extends AppCompatActivity {
         itemModel2.setImageUrl("https://www.laola1.at/images/redaktion/images/Fussball/Bundesliga/Rapid/korkmaz-karriere_eed54_f_940x529.jpg");
         //newsItems.add(itemModel2);
         return newsItems;
-
-
-        // Todo: Download actual file from server
     }
 
-
+    public /* for testing */ void setNewsItems(List<NewsItemViewModel> newsItems) {
+        adapter.setNewsItems(newsItems);
+    }
 }
