@@ -11,19 +11,19 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URL;
 
-import at.laola1.newsreader.feed.Downloader;
+import at.laola1.newsreader.feed.HttpTextDownloader;
 
 import static org.junit.Assert.assertEquals;
 
-public class DownloaderUnitTest {
+public class HttpTextDownloaderTest {
     private HttpServer server;
 
     @Test
     public void shouldDownloadEmptyFile() throws IOException {
         startServer(); // TODO PK start and stop in @Before and @After
         URL url = new URL("http://127.0.0.1:8801/emptyFile");
-        Downloader downloader = new Downloader(url);
-        String response = downloader.getContent();
+        HttpTextDownloader httpTextDownloader = new HttpTextDownloader(url);
+        String response = httpTextDownloader.getContent();
         assertEquals(0, response.length());
         stopServer();
     }
@@ -33,8 +33,8 @@ public class DownloaderUnitTest {
         startServer();
 
         URL url = new URL("http://127.0.0.1:8801/fileWithText");
-        Downloader downloader = new Downloader(url);
-        String response = downloader.getContent();
+        HttpTextDownloader httpTextDownloader = new HttpTextDownloader(url);
+        String response = httpTextDownloader.getContent();
         assertEquals("text", response);
         stopServer();
         // TODO PK format

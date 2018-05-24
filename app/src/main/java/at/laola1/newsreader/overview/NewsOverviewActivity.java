@@ -14,7 +14,6 @@ import java.util.List;
 import at.laola1.newsreader.R;
 import at.laola1.newsreader.feed.DownloaderAsyncTask;
 import at.laola1.newsreader.feed.FinishedDownloadCallback;
-import at.laola1.newsreader.feed.Downloader;
 
 public class NewsOverviewActivity extends AppCompatActivity {
 
