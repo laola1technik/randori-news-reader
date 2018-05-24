@@ -31,7 +31,7 @@ public class MainActivityEspressoTest {
             new ActivityTestRule<>(NewsOverviewActivity.class);
 
     @Test
-    public void shouldSetNewsItemTitle() throws Throwable {
+    public void shouldSetNewsItemTitle() throws Throwable { // TODO PK Throwable really?
         setNewsItems(generateNewsItemList("title1"));
 
         onView(withId(R.id.recyclerView)).check(matches(hasDescendant(withText("title1"))));

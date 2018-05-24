@@ -20,7 +20,7 @@ public class NewsOverviewAdapter extends RecyclerView.Adapter<NewsItemViewHolder
     public NewsItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View itemView = inflater.inflate(R.layout.item_news, parent, false);
+        View itemView = inflater.inflate(R.layout.item_news, parent, false); // TODO PK false is was?
         return new NewsItemViewHolder(itemView);
     }
 

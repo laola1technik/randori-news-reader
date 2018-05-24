@@ -10,8 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Downloader {
-    private URL url;
+public class Downloader { // TODO PK more specific name
+    private URL url; // TODO PK final
+
+    // TODO PK format
 
     public Downloader(String url) throws MalformedURLException {
         this.url = new URL(url);
@@ -24,7 +26,7 @@ public class Downloader {
 
     private static class DownloadTask extends AsyncTask<URL, Void, String> {
 
-        private FinishedDownloadCallback callback;
+        private FinishedDownloadCallback callback; // TODO PK final
 
         public DownloadTask(FinishedDownloadCallback callback) {
             this.callback = callback;
@@ -38,28 +40,28 @@ public class Downloader {
                 urlConnection = (HttpURLConnection) urls[0].openConnection();
                 return readStream(urlConnection.getInputStream());
             } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(); // TODO PK nono
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
             }
-            return null;
+            return null; // TODO PK nonono
         }
 
         @Override
         protected void onPostExecute(String response) {
             callback.onDownloadFinish(response);
-        }
+        } // TODO PK sort to bottom
 
-        private String readStream(InputStream in) throws IOException {
+        private String readStream(InputStream in) throws IOException { // TODO PK rename in
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
                 response.append(line);
             }
-            reader.close();
+            reader.close(); // TODO PK try with resource or finally
             return response.toString();
         }
     }

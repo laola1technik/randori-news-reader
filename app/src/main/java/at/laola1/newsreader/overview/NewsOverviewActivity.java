@@ -16,8 +16,9 @@ import at.laola1.newsreader.feed.Downloader;
 
 public class NewsOverviewActivity extends AppCompatActivity {
 
+    // TODO PK format
 
-    private NewsOverviewAdapter adapter;
+    private NewsOverviewAdapter adapter; // TODO PK rename
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
     private void initializeView() {
         setContentView(R.layout.activity_news_overview);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView); // TODO PK rename recyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new NewsOverviewAdapter();
         recyclerView.setAdapter(adapter);
@@ -40,6 +41,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
         setNewsItems(newsItems);
     }
 
+    // TODO public for test, document
     public void setNewsItems(List<NewsItemViewModel> newsItems) {
         adapter.setNewsItems(newsItems);
     }
@@ -58,7 +60,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
             });
 
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO PK nono
         }
         List<NewsItemViewModel> newsItems = new ArrayList<>();
         NewsItemViewModel itemModel = new NewsItemViewModel();

@@ -20,11 +20,12 @@ public class DownloaderUnitTest {
 
     @Test
     public void shouldDownloadEmptyFile() throws IOException {
-        startServer();
+        startServer(); // TODO PK start and stop in @Before and @After
         Downloader downloader = new Downloader("http://127.0.0.1:8801/emptyFile");
         downloader.getContent(new FinishedDownloadCallback() {
             @Override
             public void onDownloadFinish(String response) {
+                // TODO PK this does not work if download is slow, need to wait outside for completion, e.g. CountDownLatch or awaitility
                 assertEquals(0, response.length());
                 stopServer();
             }
@@ -42,11 +43,11 @@ public class DownloaderUnitTest {
                 assertEquals("text", response);
                 stopServer();
             }
-
+            // TODO PK format
         });
     }
 
-    private void stopServer() {
+    private void stopServer() { // TODO PK sort below start
         server.stop(0);
     }
 

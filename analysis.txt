@@ -1,26 +1,33 @@
+﻿Screens
+=======
+
 Screen 1 News Übersicht
-=======================
-RecyclerView
-ConstraintLayout oder LinearLayout
+-----------------------
+
+* RecyclerView
+* ConstraintLayout oder LinearLayout
 
 
 Screen 2 News Details
-=====================
-ScrollView
-ConstraintLayout oder LinearLayout
+---------------------
+
+* ScrollView
+* ConstraintLayout oder LinearLayout
+
+
 
 Plan
 ====
 
-
 Next time
-=========
-* Loading feed with Unit Test
+---------
+
+* Loading feed with Unit Test - WIP
 * Parsing feed and model with Unit Test + data provider
 * Add to main activity
 
 Things to keep in mind
-======================
+----------------------
 
 * Loading Indicator
 * No Data found when downloaded list empty
