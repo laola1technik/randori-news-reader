@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
             new DownloaderAsyncTask(new FinishedDownloadCallback() {
                 @Override
                 public void onDownloadFinish(String response) {
+
                 }
 
             }).execute(new URL("http://appsdata.laola1.at/data/probetag/news.json"));
