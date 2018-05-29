@@ -19,7 +19,12 @@ public class NewsFeedParser {
     public NewsFeed parse() throws InvalidFeedException {
         Gson jsonParser = new Gson();
         try {
-            return jsonParser.fromJson(newsFeedJson, NewsFeed.class);
+            NewsFeed newsFeed = jsonParser.fromJson(newsFeedJson, NewsFeed.class);
+            if (newsFeed == null) {
+                throw new InvalidFeedException("Can not parse News Feed");
+            }
+
+            return newsFeed;
         } catch (Exception e) {
             throw new InvalidFeedException(e.getMessage());
         }

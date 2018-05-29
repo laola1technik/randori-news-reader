@@ -19,8 +19,16 @@ public class NewsFeedParserTest {
     }
 
     @Test(expected = InvalidFeedException.class)
-    public void shouldFailIfFeedIsNoValidNewsFeed() throws InvalidFeedException {
+    public void shouldFailIfFeedIsNoJson() throws InvalidFeedException {
         String newsFeedJson = "-";
+        NewsFeedParser parser = new NewsFeedParser(newsFeedJson);
+
+        parser.parse();
+    }
+
+    @Test(expected = InvalidFeedException.class)
+    public void shouldFailIfFeedIsNoValidNewsFeed() throws InvalidFeedException {
+        String newsFeedJson = "";
         NewsFeedParser parser = new NewsFeedParser(newsFeedJson);
 
         parser.parse();
