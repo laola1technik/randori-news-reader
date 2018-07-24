@@ -19,12 +19,6 @@ Screen 2 News Details
 Plan
 ====
 
-Next time
----------
-
-* Parsing feed and fill model with Unit Test + data provider
-* Add to main activity
-
 Things to keep in mind
 ----------------------
 
