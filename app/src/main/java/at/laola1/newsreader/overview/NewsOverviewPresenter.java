@@ -11,7 +11,7 @@ public class NewsOverviewPresenter {
 
         List<NewsItemViewModel> viewModels = new ArrayList<>();
 
-        for(NewsFeed.NewsItem item : newsFeed){
+        for (NewsFeed.NewsItem item : newsFeed) {
             viewModels.add(parseItem(item));
         }
 
@@ -19,6 +19,14 @@ public class NewsOverviewPresenter {
     }
 
     public NewsItemViewModel parseItem(NewsFeed.NewsItem item) {
+        if (item.stitle == null || item.stitle.isEmpty()) {
+            throw new IllegalArgumentException("Title not set.");
+        }
+
+        if (item.thumb54x40 == null || item.thumb54x40.url == null || item.thumb54x40.url.isEmpty()) {
+            throw new IllegalArgumentException("Image Url not set.");
+        }
+
         NewsItemViewModel viewModel = new NewsItemViewModel();
         viewModel.setTitle(item.stitle);
         viewModel.setImageUrl(item.thumb54x40.url);

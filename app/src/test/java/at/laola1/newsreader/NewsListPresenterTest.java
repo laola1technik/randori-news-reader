@@ -81,4 +81,13 @@ public class NewsListPresenterTest {
         assertEquals(item.thumb54x40.url, viewModel.getImageUrl());
         assertEquals(item.stitle, viewModel.getTitle());
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void shouldFailIfNewsItemIsInvalid() {
+        NewsFeed.NewsItem item = new NewsFeed.NewsItem();
+        item.stitle = "FAK fixiert Eröffnungs-Kracher";
+        NewsOverviewPresenter presenter = new NewsOverviewPresenter();
+
+        presenter.parseItem(item);
+    }
 }
