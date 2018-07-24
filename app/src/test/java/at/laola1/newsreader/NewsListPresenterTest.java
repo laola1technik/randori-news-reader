@@ -34,4 +34,17 @@ public class NewsListPresenterTest {
 
         assertTrue(viewModels.isEmpty());
     }
+
+    @Test
+    public void shouldGiveEmptyListForNewsItemWithoutImage() {
+        NewsFeed.NewsItem item = new NewsFeed.NewsItem();
+        item.stitle = "FAK fixiert Eröffnungs-Kracher";
+        NewsFeed newsFeed = new NewsFeed();
+        newsFeed.add(item);
+        NewsOverviewPresenter presenter = new NewsOverviewPresenter();
+
+        List<NewsItemViewModel> viewModels = presenter.parse(newsFeed);
+
+        assertTrue(viewModels.isEmpty());
+    }
 }
