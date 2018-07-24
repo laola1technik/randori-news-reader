@@ -26,8 +26,8 @@ public class NewsListPresenterTest {
     @Test
     public void shouldGiveEmptyListForNewsItemWithoutTitle() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
-        item.thumb54x40 = new NewsFeed.NewsItem.Thumb();
-        item.thumb54x40.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
+        item.thumb = new NewsFeed.NewsItem.Thumb();
+        item.thumb.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
         NewsFeed newsFeed = new NewsFeed();
         newsFeed.add(item);
         NewsOverviewPresenter presenter = new NewsOverviewPresenter();
@@ -54,8 +54,8 @@ public class NewsListPresenterTest {
     public void shouldGiveListWithOneValidNewsItem() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
         item.stitle = "FAK fixiert Eröffnungs-Kracher";
-        item.thumb54x40 = new NewsFeed.NewsItem.Thumb();
-        item.thumb54x40.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
+        item.thumb = new NewsFeed.NewsItem.Thumb();
+        item.thumb.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
 
         NewsFeed newsFeed = new NewsFeed();
         newsFeed.add(item);
@@ -63,7 +63,7 @@ public class NewsListPresenterTest {
 
         List<NewsItemViewModel> viewModels = presenter.parse(newsFeed);
 
-        assertEquals(item.thumb54x40.url, viewModels.get(0).getImageUrl());
+        assertEquals(item.thumb.url, viewModels.get(0).getImageUrl());
         assertEquals(item.stitle, viewModels.get(0).getTitle());
     }
 
@@ -71,14 +71,14 @@ public class NewsListPresenterTest {
     public void shouldParseSingleNewsItem() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
         item.stitle = "FAK fixiert Eröffnungs-Kracher";
-        item.thumb54x40 = new NewsFeed.NewsItem.Thumb();
-        item.thumb54x40.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
+        item.thumb = new NewsFeed.NewsItem.Thumb();
+        item.thumb.url = "https://www.laola1.at/images/redaktion/images/Fussball/2-Liga/FAC/oberhammer-fac-trainer_dd543_f_603x340.jpg";
 
         NewsOverviewPresenter presenter = new NewsOverviewPresenter();
 
         NewsItemViewModel viewModel = presenter.parseItem(item);
 
-        assertEquals(item.thumb54x40.url, viewModel.getImageUrl());
+        assertEquals(item.thumb.url, viewModel.getImageUrl());
         assertEquals(item.stitle, viewModel.getTitle());
     }
 

@@ -28,13 +28,13 @@ public class NewsOverviewPresenter {
             throw new IllegalArgumentException("Title not set.");
         }
 
-        if (item.thumb54x40 == null || item.thumb54x40.url == null || item.thumb54x40.url.isEmpty()) {
+        if (item.thumb == null || item.thumb.url == null || item.thumb.url.isEmpty()) {
             throw new IllegalArgumentException("Image Url not set.");
         }
 
         NewsItemViewModel viewModel = new NewsItemViewModel();
         viewModel.setTitle(item.stitle);
-        viewModel.setImageUrl(item.thumb54x40.url);
+        viewModel.setImageUrl(item.thumb.url);
 
         return viewModel;
     }
