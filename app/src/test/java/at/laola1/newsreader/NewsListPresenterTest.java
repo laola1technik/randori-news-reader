@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class NewsListPresenterTest {
-    @Ignore
+    @Test
     public void shouldGiveEmptyListForEmptyNewsItem() {
         NewsFeed newsFeed = new NewsFeed();
         NewsOverviewPresenter presenter = new NewsOverviewPresenter();
@@ -23,7 +23,7 @@ public class NewsListPresenterTest {
         assertTrue(viewModels.isEmpty());
     }
 
-    @Ignore
+    @Test
     public void shouldGiveEmptyListForNewsItemWithoutTitle() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
         item.thumb54x40 = new NewsFeed.NewsItem.Thumb();
@@ -37,7 +37,7 @@ public class NewsListPresenterTest {
         assertTrue(viewModels.isEmpty());
     }
 
-    @Ignore
+    @Test
     public void shouldGiveEmptyListForNewsItemWithoutImage() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
         item.stitle = "FAK fixiert Eröffnungs-Kracher";
@@ -50,7 +50,7 @@ public class NewsListPresenterTest {
         assertTrue(viewModels.isEmpty());
     }
 
-    @Ignore
+    @Test
     public void shouldGiveListWithOneValidNewsItem() {
         NewsFeed.NewsItem item = new NewsFeed.NewsItem();
         item.stitle = "FAK fixiert Eröffnungs-Kracher";

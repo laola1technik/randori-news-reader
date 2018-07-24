@@ -12,7 +12,12 @@ public class NewsOverviewPresenter {
         List<NewsItemViewModel> viewModels = new ArrayList<>();
 
         for (NewsFeed.NewsItem item : newsFeed) {
-            viewModels.add(parseItem(item));
+           try{
+               NewsItemViewModel news = parseItem(item);
+               viewModels.add(news);
+           } catch (IllegalArgumentException e){
+               // Todo: handle error
+           }
         }
 
         return viewModels;
