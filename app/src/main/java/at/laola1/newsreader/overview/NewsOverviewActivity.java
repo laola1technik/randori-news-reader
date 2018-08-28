@@ -68,7 +68,7 @@ public class NewsOverviewActivity extends AppCompatActivity {
             setNewsItems(viewModels);
 
         } catch (InvalidFeedException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // TODO PK Error Handling
         }
     }
 }

@@ -1,4 +1,4 @@
-package at.laola1.newsreader.feed.parser;
+package at.laola1.newsreader.feed.parser; // TODO PK part of feed, no need for extra package with 1 class
 
 import android.support.annotation.NonNull;
 
@@ -9,7 +9,7 @@ import at.laola1.newsreader.feed.model.NewsFeed;
 
 public class NewsFeedParser {
 
-    private String newsFeedJson;
+    private String newsFeedJson; // PK final
 
     public NewsFeedParser(String newsFeedJson) {
         this.newsFeedJson = newsFeedJson;
@@ -26,7 +26,7 @@ public class NewsFeedParser {
 
             return newsFeed;
         } catch (Exception e) {
-            throw new InvalidFeedException(e.getMessage());
+            throw new InvalidFeedException(e.getMessage()); // TODO PK this drops original stack trace
         }
     }
 }

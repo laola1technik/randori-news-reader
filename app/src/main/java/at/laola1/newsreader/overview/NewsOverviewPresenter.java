@@ -15,8 +15,9 @@ public class NewsOverviewPresenter {
            try{
                NewsItemViewModel news = parseItem(item);
                viewModels.add(news);
-           } catch (IllegalArgumentException e){
+           } catch (IllegalArgumentException e){ // TODO PK format
                // Todo: handle error
+               // TODO PK exception is used for flow control!
            }
         }
 
@@ -25,6 +26,7 @@ public class NewsOverviewPresenter {
 
     public NewsItemViewModel parseItem(NewsFeed.NewsItem item) {
         if (item.stitle == null || item.stitle.isEmpty()) {
+            // TODO PK discuss exception versus defaults?
             throw new IllegalArgumentException("Title not set.");
         }
 

@@ -14,7 +14,7 @@ public class DownloaderAsyncTask extends AsyncTask<URL, Void, DownloaderAsyncTas
     }
 
     @Override
-    protected Result doInBackground(URL... urls) {
+    protected Result doInBackground(URL... urls) { // TODO PK why URL... and only work on urls[0]
         try {
             String content = new HttpTextDownloader(urls[0]).getContent();
             return new Result(content);
@@ -29,7 +29,7 @@ public class DownloaderAsyncTask extends AsyncTask<URL, Void, DownloaderAsyncTas
         //TODO BG Handle Error
     }
 
-    public static class Result {
+    public static class Result { // PK I like this class
         private final String response;
         private final IOException downloadFailed;
 

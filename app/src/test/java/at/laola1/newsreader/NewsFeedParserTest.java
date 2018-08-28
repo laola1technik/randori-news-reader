@@ -15,11 +15,14 @@ public class NewsFeedParserTest {
 
         NewsFeed newsFeed = parser.parse();
 
-        assertEquals(true, newsFeed.isEmpty());
+        assertEquals(true, newsFeed.isEmpty()); // TODO PK use assertTrue
     }
+
+    // TODO PK need a test for a filled news item
 
     @Test(expected = InvalidFeedException.class)
     public void shouldFailIfFeedIsNoJson() throws InvalidFeedException {
+        // TODO PK are we testing GSON here?
         String newsFeedJson = "-";
         NewsFeedParser parser = new NewsFeedParser(newsFeedJson);
 

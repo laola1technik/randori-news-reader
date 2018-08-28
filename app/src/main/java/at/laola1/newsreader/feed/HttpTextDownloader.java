@@ -28,6 +28,7 @@ public class HttpTextDownloader {
     }
 
     private String readStream(InputStream in) throws IOException {
+        // TODO PK does only work for default encoding, use header
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
             StringBuilder response = new StringBuilder();
             String line;
