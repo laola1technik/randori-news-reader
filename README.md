@@ -1,5 +1,6 @@
-# News Reader - Android
-The language is Java.
+# News Reader - Android/Java
+Done in a Randori-styled [Coding Dojo](http://codingdojo.org/WhatIsCodingDojo/), 
+7 sessions a 2 hours.
 
 ## Installation
 * This package requires the Android-SDK.
